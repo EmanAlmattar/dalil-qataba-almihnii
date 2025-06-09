@@ -1,107 +1,121 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>قعطبة - الضالع</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #d2afff, #e6ccff);
-      transition: background 0.3s, color 0.3s;
+    :root {
+      --main-color: #9b59b6;
+      --bg-color: #f4f1fa;
+      --text-color: #333;
+      --dark-bg: #1a1a2e;
+      --dark-text: #fff;
     }
 
-    .dark-mode {
-      background: #1e1e2f;
-      color: #fff;
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: 0.3s;
+    }
+
+    body.dark-mode {
+      background-color: var(--dark-bg);
+      color: var(--dark-text);
     }
 
     header {
+      background: linear-gradient(to left, #9b59b6, #b980d2);
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      border-bottom-left-radius: 50px;
+      border-bottom-right-radius: 50px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      word-wrap: break-word;
+    }
+
+    .controls {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background: linear-gradient(to right, #b58ded, #c3a7f5);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: #fff;
-      font-weight: bold;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
-    }
-
-    .nav-links a:hover {
-      background: #fff;
-      color: #8e44ad;
-      transform: scale(1.05);
-    }
-
-    .theme-btn, .lang-btn {
-      background: #fff;
+    .controls button {
+      background-color: white;
+      color: var(--main-color);
       border: none;
-      padding: 0.3rem 0.7rem;
-      border-radius: 20px;
-      cursor: pointer;
+      padding: 0.6rem 1rem;
       font-weight: bold;
-      color: #8e44ad;
-      margin-left: 0.5rem;
-      transition: background 0.3s;
-      font-size: 0.8rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 1rem;
     }
 
-    .theme-btn:hover, .lang-btn:hover {
-      background: #f0e0ff;
+    .controls button:hover {
+      background-color: #f0e0ff;
     }
 
     .content {
-      padding: 3rem 2rem;
+      padding: 1.5rem;
       text-align: center;
     }
 
-    .content h1 {
-      color: #8e44ad;
-      font-size: 2.5rem;
+    .content h2 {
+      color: var(--main-color);
       margin-bottom: 1rem;
+      font-size: 1.6rem;
     }
 
     .content p {
-      font-size: 1.2rem;
-      color: #333;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      max-width: 90%;
+      margin: 0 auto 1rem;
+      word-wrap: break-word;
     }
 
     footer {
+      margin-top: 2rem;
+      background-color: #d7c6ec;
+      color: #333;
       text-align: center;
       padding: 1rem;
       font-size: 0.9rem;
-      background: #c9b5e6;
-      color: #333;
       border-top-left-radius: 60px;
       border-top-right-radius: 60px;
-      margin-top: 4rem;
     }
 
     @media (max-width: 600px) {
-      .nav-links {
-        flex-direction: column;
+      header h1 {
+        font-size: 1.5rem;
       }
 
-      .content h1 {
-        font-size: 2rem;
+      .controls button {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+      }
+
+      .content h2 {
+        font-size: 1.4rem;
+      }
+
+      .content p {
+        font-size: 1rem;
       }
     }
   </style>
@@ -109,30 +123,26 @@
 <body>
 
 <header>
-  <div class="nav-links">
-    <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
-   
-  </div>
-
-  <div class="language-switch">
-    <button class="lang-btn" onclick="switchLanguage('ar')">العربية</button>
-    <button class="lang-btn" onclick="switchLanguage('en')">English</button>
-    <button class="theme-btn" onclick="toggleTheme()">🌓 الوضع الليلي</button>
+  <h1 id="page-title">قعطبة - الضالع</h1>
+  <div class="controls">
+    <button onclick="switchLanguage('ar')">العربية</button>
+    <button onclick="switchLanguage('en')">English</button>
+    <button onclick="toggleTheme()">🌓 الوضع الليلي</button>
   </div>
 </header>
 
 <section class="content">
-  <h1 id="title">قعطبة - الضالع</h1>
-  <p id="desc">
-    مديرية قعطبة تقع في محافظة الضالع جنوب اليمن، وتُعد من أهم المديريات التي تضم العديد من المهنيين وأصحاب الحرف المتميزة.
+  <h2 id="headline">نبذة عن قعطبة</h2>
+  <p id="description">
+    مديرية قعطبة هي إحدى مديريات محافظة الضالع في جنوب اليمن، وتشتهر بالمهنيين المهرة والحرفيين الذين يقدمون خدمات متنوعة في مختلف المجالات.
   </p>
-  <p id="more">
-    في هذه الصفحة، يمكنك استعراض المواقع والمهنيين حسب المناطق داخل قعطبة.
+  <p id="details">
+    عبر هذه الصفحة، يمكنك تصفح المهنيين والمواقع حسب الأحياء والمناطق داخل قعطبة، مع إمكانية البحث والتواصل المباشر.
   </p>
 </section>
 
 <footer>
-  جميع الحقوق محفوظة © 2025 - قعطبة، الضالع
+  جميع الحقوق محفوظة © 2025 - دليل قعطبة المهني
 </footer>
 
 <script>
@@ -143,31 +153,30 @@
 
   function toggleTheme() {
     document.body.classList.toggle("dark-mode");
-    if (document.body.classList.contains("dark-mode")) {
-      localStorage.setItem("darkMode", "enabled");
-    } else {
-      localStorage.setItem("darkMode", "disabled");
-    }
+    localStorage.setItem("darkMode", document.body.classList.contains("dark-mode") ? "enabled" : "disabled");
   }
 
   // الترجمة
   const translations = {
     ar: {
       title: "قعطبة - الضالع",
-      desc: "مديرية قعطبة تقع في محافظة الضالع جنوب اليمن، وتُعد من أهم المديريات التي تضم العديد من المهنيين وأصحاب الحرف المتميزة.",
-      more: "في هذه الصفحة، يمكنك استعراض المواقع والمهنيين حسب المناطق داخل قعطبة.",
+      headline: "نبذة عن قعطبة",
+      description: "مديرية قعطبة هي إحدى مديريات محافظة الضالع في جنوب اليمن، وتشتهر بالمهنيين المهرة والحرفيين الذين يقدمون خدمات متنوعة في مختلف المجالات.",
+      details: "عبر هذه الصفحة، يمكنك تصفح المهنيين والمواقع حسب الأحياء والمناطق داخل قعطبة، مع إمكانية البحث والتواصل المباشر."
     },
     en: {
-      title: "Qa'atabah - Dhamar",
-      desc: "Qa'atabah is a district in the Dhamar Governorate in southern Yemen, known for its skilled professionals and craftsmen.",
-      more: "In this page, you can browse locations and professionals by area inside Qa'atabah.",
+      title: "Qa'atabah - Al-Dhalea",
+      headline: "About Qa'atabah",
+      description: "Qa'atabah District is one of the districts of Al-Dhalea Governorate in southern Yemen, known for its skilled professionals and artisans.",
+      details: "Through this page, you can browse professionals and locations by neighborhoods and areas inside Qa'atabah, with the ability to search and contact directly."
     }
   };
 
   function switchLanguage(lang) {
-    document.getElementById("title").textContent = translations[lang].title;
-    document.getElementById("desc").textContent = translations[lang].desc;
-    document.getElementById("more").textContent = translations[lang].more;
+    document.getElementById("page-title").textContent = translations[lang].title;
+    document.getElementById("headline").textContent = translations[lang].headline;
+    document.getElementById("description").textContent = translations[lang].description;
+    document.getElementById("details").textContent = translations[lang].details;
   }
 </script>
 
