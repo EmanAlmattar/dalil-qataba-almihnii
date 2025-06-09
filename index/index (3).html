@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>بيانات صاحب العمل</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    header {
+      background: linear-gradient(to right, #9d69bc, #b178c1);
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    header .left-tools, header .right-tools {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .lang-btn, .theme-btn, .home-btn {
+      background: white;
+      color: #8d64a7;
+      border: none;
+      border-radius: 4px;
+      padding: 6px 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .home-btn i {
+      margin-left: 5px;
+    }
+
+    h1 {
+      font-size: 20px;
+      text-align: center;
+      flex: 1 1 100%;
+      margin: 10px 0 0;
+    }
+
+    main {
+      padding: 30px 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 5px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button.submit-btn {
+      width: 100%;
+      margin-top: 20px;
+      background: #ab64d7;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    body.dark-mode {
+      background-color: #121212;
+      color: #eee;
+    }
+
+    body.dark-mode form {
+      background-color: #1e1e1e;
+    }
+
+    body.dark-mode input {
+      background-color: #2c2c2c;
+      color: #fff;
+      border: 1px solid #555;
+    }
+
+    body.dark-mode .submit-btn {
+      background: #d081dd;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="left-tools">
+      <button class="lang-btn" onclick="setLang('ar')">عربي</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+    <h1 id="page-title">بيانات صاحب العمل</h1>
+    <div class="right-tools">
+      <button class="theme-btn" onclick="toggleDark()">🌓</button>
+      <a href="index.html" class="home-btn"><i class="fas fa-home"></i> الرئيسية</a>
+    </div>
+  </header>
+
+  <main>
+    <form>
+      <label id="name-label">اسم صاحب العمل:</label>
+      <input type="text" placeholder="أدخل اسمك">
+
+      <label id="place-label">اسم المحل أو المؤسسة:</label>
+      <input type="text" placeholder="أدخل اسم المحل أو المؤسسة">
+
+      <button type="submit" class="submit-btn" id="submit-btn">إرسال</button>
+    </form>
+  </main>
+
+  <script>
+    function toggleDark() {
+      document.body.classList.toggle("dark-mode");
+    }
+
+    function setLang(lang) {
+      if (lang === "ar") {
+        document.documentElement.lang = "ar";
+        document.documentElement.dir = "rtl";
+        document.getElementById("page-title").textContent = "بيانات صاحب العمل";
+        document.getElementById("name-label").textContent = "اسم صاحب العمل:";
+        document.getElementById("place-label").textContent = "اسم المحل أو المؤسسة:";
+        document.querySelector("input[placeholder]").placeholder = "أدخل اسمك";
+        document.querySelectorAll("input")[1].placeholder = "أدخل اسم المحل أو المؤسسة";
+        document.getElementById("submit-btn").textContent = "إرسال";
+      } else {
+        document.documentElement.lang = "en";
+        document.documentElement.dir = "ltr";
+        document.getElementById("page-title").textContent = "Employer Information";
+        document.getElementById("name-label").textContent = "Employer Name:";
+        document.getElementById("place-label").textContent = "Store or Company Name:";
+        document.querySelector("input[placeholder]").placeholder = "Enter your name";
+        document.querySelectorAll("input")[1].placeholder = "Enter store or company name";
+        document.getElementById("submit-btn").textContent = "Submit";
+      }
+    }
+  </script>
+
+</body>
+</html>

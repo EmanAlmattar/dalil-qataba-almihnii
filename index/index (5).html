@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>تسجيل الدخول - دليل قعطبة المهني</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #d2afff, #e6ccff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      transition: background 0.3s, color 0.3s;
+    }
+    .dark-mode {
+      background: #1e1e2f;
+      color: #fff;
+    }
+    .login-container {
+      background: #fff;
+      padding: 2rem 3rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      width: 320px;
+      text-align: center;
+    }
+    .login-container h2 {
+      margin-bottom: 1.5rem;
+      color: #8e44ad;
+    }
+    input[type="email"], input[type="password"] {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+    button {
+      width: 100%;
+      padding: 0.8rem;
+      background: #8e44ad;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #7c38a1;
+    }
+    .error-msg {
+      color: red;
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+    .links {
+      margin-top: 1rem;
+    }
+    .links a {
+      color: #8e44ad;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h2>تسجيل الدخول</h2>
+    <div class="error-msg" id="error-msg"></div>
+    <input type="email" id="email" placeholder="البريد الإلكتروني" required />
+    <input type="password" id="password" placeholder="كلمة المرور" required />
+    <button onclick="login()">دخول</button>
+    <div class="links">
+      <a href="register.html">ليس لديك حساب؟ سجّل هنا</a>
+    </div>
+  </div>
+
+  <script>
+    function login() {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const errorMsg = document.getElementById('error-msg');
+
+      if (!email || !password) {
+        errorMsg.textContent = "يرجى إدخال البريد الإلكتروني وكلمة المرور";
+        return;
+      }
+
+      // جلب بيانات المستخدمين من localStorage
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+
+      // البحث عن المستخدم
+      const user = users.find(u => u.email === email && u.password === password);
+
+      if (user) {
+        // حفظ حالة تسجيل الدخول في localStorage
+        localStorage.setItem('loggedInUser', JSON.stringify(user));
+        errorMsg.textContent = "";
+        alert("تم تسجيل الدخول بنجاح!");
+        // التحويل لصفحة الملف الشخصي
+        window.location.href = "profile.html";
+      } else {
+        errorMsg.textContent = "البريد الإلكتروني أو كلمة المرور غير صحيحة";
+      }
+    }
+
+    // إذا المستخدم مسجل دخول سابقًا، نوجهه مباشرة لصفحة الملف الشخصي
+    window.onload = function() {
+      if (localStorage.getItem('loggedInUser')) {
+        window.location.href = "profile.html";
+      }
+    };
+  </script>
+
+</body>
+</html>
