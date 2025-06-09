@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>دليل قعطبة المهني</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #d2afff, #e6ccff);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .dark-mode {
+      background: #1e1e2f;
+      color: #fff;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: linear-gradient(to right, #b58ded, #c3a7f5);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      background: #fff;
+      color: #8e44ad;
+      transform: scale(1.05);
+    }
+
+    .theme-btn, .lang-btn {
+      background: #fff;
+      border: none;
+      padding: 0.25rem 0.6rem;
+      font-size: 0.8rem;
+      border-radius: 15px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #8e44ad;
+      margin-left: 0.4rem;
+      transition: background 0.3s;
+    }
+
+    .theme-btn:hover, .lang-btn:hover {
+      background: #f0e0ff;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 5rem 2rem;
+      background: linear-gradient(to top right, #dec9f8, #efe3ff);
+      border-bottom-left-radius: 60px;
+      border-bottom-right-radius: 60px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: #333;
+    }
+
+    .hero .btn {
+      padding: 0.5rem 1.2rem;
+      font-size: 0.9rem;
+      background: #8e44ad;
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+
+    .hero .btn:hover {
+      transform: scale(1.05);
+      background: #7c38a1;
+    }
+
+    .language-switch {
+      display: flex;
+      align-items: center;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      background: #c9b5e6;
+      color: #333;
+      border-top-left-radius: 60px;
+      border-top-right-radius: 60px;
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        flex-direction: column;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="nav-links">
+    <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+    <a href="search.html"><i class="fas fa-search"></i> البحث</a>
+    <a href="register.html"><i class="fas fa-user-plus"></i> التسجيل</a>
+    <a href="location.html"><i class="fas fa-map-marker-alt"></i> قعطبة - الضالع</a>
+    <a href="profile.html"><i class="fas fa-user-circle"></i> حسابي</a>
+    <a href="emp.html"><i class="fas fa-briefcase"></i> صاحب عمل</a>
+  </div>
+
+  <div class="language-switch">
+    <button class="lang-btn" onclick="switchLanguage('ar')">العربية</button>
+    <button class="lang-btn" onclick="switchLanguage('en')">English</button>
+    <button class="theme-btn" onclick="toggleTheme()">🌓 الوضع الليلي</button>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>مرحبًا بك في دليل قعطبة المهني</h1>
+  <p>ابحث عن المهنيين والخدمات بسهولة في منطقتك</p>
+  <button class="btn" onclick="window.location.href='about.html'">ابدأ الآن</button>
+</section>
+
+<footer>
+  جميع الحقوق محفوظة © 2025 - قعطبة، الضالع
+</footer>
+
+<script>
+  if (localStorage.getItem("darkMode") === "enabled") {
+    document.body.classList.add("dark-mode");
+  }
+
+  function toggleTheme() {
+    document.body.classList.toggle("dark-mode");
+    localStorage.setItem("darkMode", document.body.classList.contains("dark-mode") ? "enabled" : "disabled");
+  }
+
+  const translations = {
+    ar: {
+      welcome: "مرحبًا بك في دليل قعطبة المهني",
+      desc: "ابحث عن المهنيين والخدمات بسهولة في منطقتك",
+      start: "ابدأ الآن",
+      home: "الرئيسية",
+      search: "البحث",
+      register: "التسجيل",
+      area: "قعطبة - الضالع"
+    },
+    en: {
+      welcome: "Welcome to Qa'atabah Professionals Guide",
+      desc: "Easily find professionals and services in your area",
+      start: "Get Started",
+      home: "Home",
+      search: "Search",
+      register: "Register",
+      area: "Qa'atabah - Dhamar"
+    }
+  };
+
+  function switchLanguage(lang) {
+    document.querySelector("h1").textContent = translations[lang].welcome;
+    document.querySelector("p").textContent = translations[lang].desc;
+    document.querySelector(".btn").textContent = translations[lang].start;
+
+    const links = document.querySelectorAll(".nav-links a");
+    links[0].innerHTML = `<i class="fas fa-home"></i> ${translations[lang].home}`;
+    links[1].innerHTML = `<i class="fas fa-search"></i> ${translations[lang].search}`;
+    links[2].innerHTML = `<i class="fas fa-user-plus"></i> ${translations[lang].register}`;
+    links[3].innerHTML = `<i class="fas fa-map-marker-alt"></i> ${translations[lang].area}`;
+  }
+
+  function logout() {
+    localStorage.removeItem('loggedInUser');
+    location.reload();
+  }
+
+  window.onload = function() {
+    const user = JSON.parse(localStorage.getItem('loggedInUser'));
+    if (user) {
+      const navLinks = document.querySelector('.nav-links');
+      const loginLink = navLinks.querySelector('a[href="login.html"]');
+      if (loginLink) loginLink.remove();
+
+      const userInfo = document.createElement('span');
+      userInfo.style.color = "#fff";
+      userInfo.style.marginLeft = "1rem";
+      userInfo.style.fontWeight = "bold";
+      userInfo.textContent = `مرحبًا، ${user.name}`;
+
+      const logoutBtn = document.createElement('button');
+      logoutBtn.textContent = "تسجيل خروج";
+      logoutBtn.style.marginLeft = "1rem";
+      logoutBtn.style.padding = "0.25rem 0.6rem";
+      logoutBtn.style.border = "none";
+      logoutBtn.style.borderRadius = "15px";
+      logoutBtn.style.cursor = "pointer";
+      logoutBtn.style.backgroundColor = "#fff";
+      logoutBtn.style.color = "#8e44ad";
+      logoutBtn.style.fontSize = "0.8rem";
+      logoutBtn.onclick = logout;
+
+      navLinks.appendChild(userInfo);
+      navLinks.appendChild(logoutBtn);
+    }
+  }
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
